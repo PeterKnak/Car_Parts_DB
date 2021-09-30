@@ -1,0 +1,9 @@
+CREATE DATABASE car_part_inventory IF NOT EXISTS;
+
+CREATE TABLE models (model_id INT NOT Null, model_name VARCHAR(20) NOT NULL, model_year VARCHAR(4) not null, PRIMARY KEY (model_id));
+
+CREATE TABLE parts (id INT NOT NULL, part_name VARCHAR(20), type VARCHAR(20), model_id INT NOT NULL, PRIMARY KEY (id), FOREIGN KEY (model_id) REFERENCES models(model_id));
+
+CREATE TABLE features (id INT NOT NULL, feature_name VARCHAR(20) NOT NULL, PRIMARY KEY (id));
+
+SELECT parts.id, parts.part_name, models.model_name FROM parts, models WHERE parts.model_id = models.model_id;
